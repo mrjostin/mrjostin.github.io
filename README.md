@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Feliz cumpleaños, papá</title>
+<style>
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#f2f6ff;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+position:relative;
+}
+.card{
+background:white;
+border-radius:14px;
+padding:30px;
+max-width:600px;
+width:100%;
+box-shadow:0 4px 14px rgba(0,0,0,0.1);
+text-align:center;
+}
+h1{
+margin-top:0;
+color:#2146c7;
+}
+p{
+color:#333;
+line-height:1.6;
+font-size:18px;
+}
+.footer{
+margin-top:20px;
+color:#666;
+font-size:14px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🎉 Feliz cumpleaños, papá 🎉</h1>
+<p>
+Que la pase muy bien en su día y que hoy no se preocupe por nada, porque este día es para usted. Gracias por todo lo que ha hecho por mí, por su esfuerzo, su apoyo y por nunca dejarme solo.
+<br><br>
+Con la bendición de Dios siempre va a salir adelante. Y aunque a veces no parezca, lo quiero y lo aprecio mucho.
+<br><br>
+<strong>Feliz cumple, viejito. 🎉🙏💙</strong>
+</p>
+<div class="footer"><img src="papa.jpg" alt="Foto de papá" style="width:50%; border-radius:10px; margin-top:20px;">
+</div>
+</div>
+<canvas id="confetti" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></canvas>
+<script>
+const canvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+function resize(){canvas.width = window.innerWidth; canvas.height = window.innerHeight;} resize(); window.onresize = resize;
+const pieces=[]; const colors=['#ff6b6b','#ffd93d','#6bc9ff','#b28dff','#7dffae'];
+for(let i=0;i<120;i++){
+pieces.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vy:1+Math.random()*2,vx:(Math.random()-0.5)*1.5,size:5+Math.random()*5,color:colors[Math.floor(Math.random()*colors.length)]});
+}
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+pieces.forEach(p=>{
+p.x+=p.vx; p.y+=p.vy;
+if(p.y>canvas.height){p.y=-10; p.x=Math.random()*canvas.width;}
+ctx.fillStyle=p.color;
+ctx.fillRect(p.x,p.y,p.size,p.size);
+});
+requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
